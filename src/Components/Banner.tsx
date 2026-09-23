@@ -2,7 +2,7 @@ import Image from 'next/image';
 import bannerImg from "@/assets/banner.png";
 const Banner = () => {
     return (
-        <div className="w-full max-w-7xl mx-auto p-4">
+        <div className="w-full max-w-7xl mx-auto py-8 px-4">
       <div className="relative overflow-hidden rounded-2xl bg-[#121318] border border-neutral-800/60 p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8 min-h-[380px]">
         
         {/* Left Column: Content */}

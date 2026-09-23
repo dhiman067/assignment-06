@@ -1,9 +1,12 @@
+'use client'
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
+import { usePathname } from "next/navigation";
 
 
 const Navbar = () => {
+  const pathName = usePathname()
     return (
        <div className= "shadow-2xl">
          <div className="navbar container mx-auto">
@@ -16,8 +19,8 @@ const Navbar = () => {
       
         tabIndex={-1}
         className="menu menu-sm dropdown-content bg-black rounded-box z-1 mt-3 w-52 p-2 shadow">
-         <li><Link href="/"><span className="text-slate-300 text-xs font-bold">Work Out</span></Link></li>
-        <li><Link href="/myPlans"><span className="text-slate-300 text-xs font-bold">My Plan</span></Link></li>
+         <li><Link href="/"><span className={pathName === '/'? 'text-[#C2F800] text-xs font-bold':'text-slate-300 text-xs font-bold'}>Work Out</span></Link></li>
+        <li><Link href="/myPlans"><span className={pathName === '/myPlans'? 'text-[#C2F800] text-xs font-bold':'text-slate-300 text-xs font-bold'}>My Plan</span></Link></li>
       </ul>
     </div>
     <div className="text-xl">
@@ -29,8 +32,8 @@ const Navbar = () => {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><Link href="/"><span className="text-slate-300 text-xs font-bold">Work Out</span></Link></li>
-        <li><Link href="/myPlans"><span className="text-slate-300 text-xs font-bold">My Plan</span></Link></li>
+      <li><Link href="/"><span className={pathName === '/'? 'text-[#C2F800] text-xs font-bold':'text-slate-300 text-xs font-bold'}>Work Out</span></Link></li>
+        <li><Link href="/myPlans"><span className={pathName === '/myPlans'? 'text-[#C2F800] text-xs font-bold':'text-slate-300 text-xs font-bold'}>My Plan</span></Link></li>
     </ul>
   </div>
   <div className="navbar-end">

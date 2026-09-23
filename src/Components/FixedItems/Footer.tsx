@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import footerlogo from "@/assets/logo.png";
 const Footer = () => {
-    const currentYear = new Date().getFullYear();
+    const year = new Date().getFullYear();
     return (
         <div>
             <footer className="w-full bg-[#0a0a0a] border-t border-neutral-800 text-neutral-400 py-6 px-6 sm:px-12">
@@ -25,7 +25,7 @@ const Footer = () => {
 
         {/* Right: Copyright & Tagline */}
         <div className="text-xs sm:text-sm text-neutral-500 text-center sm:text-right font-normal">
-          © {currentYear} FitLog — Workout Library. Train hard, log honest.
+          © {year} FitLog — Workout Library. Train hard, log honest.
         </div>
 
       </div>

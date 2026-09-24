@@ -6,7 +6,7 @@ export interface Ifit {
     equipment:string
     difficulty:string
     duration:number
-    steps:number
+    sets:number
     reps:string
     rating:number
     description:string

@@ -5,7 +5,7 @@ const Footer = () => {
     const year = new Date().getFullYear();
     return (
         <div>
-            <footer className="w-full bg-[#0a0a0a] border-t border-neutral-800 text-neutral-400 py-6 px-6 sm:px-12">
+            <footer className="w-full bg-[#0a0a0a] border-t border-neutral-800 text-neutral-400 py-10 px-6 sm:px-12">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         
         {/* Left: Logo & Brand Name */}

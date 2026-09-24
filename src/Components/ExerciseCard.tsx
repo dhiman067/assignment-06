@@ -1,13 +1,18 @@
 import { Ifit } from '@/type';
 import Image from 'next/image';
 import { Clock, Flame, Star } from 'lucide-react';
+import Link from 'next/link';
 
 const ExerciseCard = ({exercise}:{exercise:Ifit}) => {
     return (
-        <div className="w-full max-w-[30rem] rounded-2xl bg-[#121318] border border-neutral-800/80 overflow-hidden shadow-lg hover:border-neutral-700 transition-colors">
+      <Link
+       href={`/exercise/${exercise.id}`}
+       className="block w-full max-w-[30rem]"
+      >
+       <div className="w-full rounded-2xl bg-[#121318] border border-neutral-800/80 overflow-hidden shadow-lg hover:border-neutral-700 transition-colors">
       
       {/* Top Image Banner */}
-      <div className="relative w-full h-48 sm:h-52 bg-neutral-900 overflow-hidden">
+      <div className="relative w-full h-48 sm:h-80 bg-neutral-900 overflow-hidden">
         <Image
           src={exercise.image}
           alt={exercise.name}
@@ -68,6 +73,7 @@ const ExerciseCard = ({exercise}:{exercise:Ifit}) => {
 
       </div>
     </div>
+       </Link>
     );
 };
 

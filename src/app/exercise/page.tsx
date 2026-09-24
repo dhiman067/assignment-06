@@ -17,7 +17,7 @@ const exercises:Ifit[] = await getExerciseData()
         <div className="container mx-auto py-8">
             <div className="justify-items-start px-4">
                 <h1 className="text-white text-4xl font-bold">THE LIBRARY</h1>
-                <p className="text-[#9CA3AF]">Twelve lifts covering every major muscle group.</p>
+                <p className="text-[#9CA3AF] text-xl font-semibold">Twelve lifts covering every major muscle group.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full  mx-auto px-4 py-8 justify-items-center">
                 {

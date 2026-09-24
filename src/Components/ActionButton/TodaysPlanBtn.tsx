@@ -2,11 +2,11 @@
 import { exerciseContext } from '@/ContextApi/Context';
 import { Ifit } from '@/type';
 import { Calendar } from 'lucide-react';
-import { useContext } from 'react';
+import { Dispatch, SetStateAction, useContext } from 'react';
 
 const TodaysPlanBtn = ({data}:{data:Ifit}) => {
     const state = useContext(exerciseContext)
-    const {todaysPlan,setTodaysPlan} = state
+    const {todaysPlan,setTodaysPlan} = state as  {todaysPlan:Ifit[]; setTodaysPlan:Dispatch<SetStateAction<Ifit[]>>}
     console.log(todaysPlan);
     const handleTodayPlan = ()=>{
         if(todaysPlan.includes(data)){

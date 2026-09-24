@@ -6,15 +6,14 @@ export const exerciseContext = createContext({})
 const ExerciseContextProvider = ({children}:{children:ReactNode}) => {
     const [todaysPlan,setTodaysPlan] = useState([])
     const [saveLater, setSaveLater] = useState([])
+    const [activeTab, setActiveTab] = useState<'tab-1' | 'tab-2'>('tab-1')
     const sharedState ={
-        todaysPlan,setTodaysPlan,saveLater,setSaveLater
+        todaysPlan,setTodaysPlan,saveLater,setSaveLater,activeTab, setActiveTab
     }
     return (
-        <div>
-            <exerciseContext.Provider value={sharedState}>
-            {children}
-            </exerciseContext.Provider>
-        </div>
+        <exerciseContext.Provider value={sharedState}>
+        {children}
+        </exerciseContext.Provider>
     );
 };
 

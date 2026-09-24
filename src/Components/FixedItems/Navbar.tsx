@@ -3,9 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 import { usePathname } from "next/navigation";
+import { useContext } from "react";
+import { exerciseContext } from "@/ContextApi/Context";
+import { Ifit } from "@/type";
 
 
 const Navbar = () => {
+  const {todaysPlan,saveLater} = useContext(exerciseContext) as {todaysPlan:Ifit[]; saveLater:Ifit[]}
   const pathName = usePathname()
     return (
        <div className= "shadow-2xl">
@@ -37,8 +41,12 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <p className="text-slate-300 text-xs font-bold">Plan <span className="bg-[#C2F800] rounded-4xl px-2 py-1 text-black">0</span></p>
-    <p className="pl-3 text-slate-300 text-xs font-bold ">Saved <span className="">0</span></p>
+    <p className="text-slate-300 text-xs font-bold">Plan <span className="bg-[#C2F800] rounded-4xl px-2 py-1 text-black">
+      {todaysPlan.length}
+      </span></p>
+    <p className="pl-3 text-slate-300 text-xs font-bold ">Saved <span className="">
+      {saveLater.length}
+      </span></p>
   </div>
 </div>
 <hr />

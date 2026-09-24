@@ -2,6 +2,7 @@ import { Ifit } from '@/type';
 import Image from 'next/image';
 import { Calendar, Bookmark } from 'lucide-react';
 import TodaysPlanBtn from './ActionButton/TodaysPlanBtn';
+import SaveLaterBtn from './ActionButton/SaveLaterBtn';
 
 const ExerciseDetail = ({data}:{data:Ifit}) => {
     return (
@@ -129,10 +130,7 @@ const ExerciseDetail = ({data}:{data:Ifit}) => {
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <TodaysPlanBtn data={data}></TodaysPlanBtn>
 
-            <button className="flex-1 min-w-[140px] bg-[#12141a] hover:bg-neutral-800 text-neutral-300 font-bold text-xs sm:text-sm tracking-wide py-3 px-4 rounded-xl border border-neutral-800 flex items-center justify-center gap-2 transition-colors cursor-pointer">
-              <Bookmark className="w-4 h-4 stroke-[2]" />
-              <span>Save for later</span>
-            </button>
+            <SaveLaterBtn data ={data}></SaveLaterBtn>
           </div>
 
         </div>

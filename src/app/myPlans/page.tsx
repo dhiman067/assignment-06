@@ -7,7 +7,7 @@ import { exerciseContext } from "@/ContextApi/Context";
 import { Ifit } from "@/type";
 import Link from "next/link";
 
-import { Dispatch, SetStateAction, useContext } from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 
 const MyPlanPage = () => {
     const { todaysPlan, saveLater, activeTab, setActiveTab } = useContext(exerciseContext) as {
@@ -16,20 +16,42 @@ const MyPlanPage = () => {
         activeTab: string
         setActiveTab: Dispatch<SetStateAction<string>>
     }
+    const [sort, setSort] = useState<'Duration'|'Calories'|'Rating'>('Duration')
+    const handleSort =(exercise:Ifit[])=>{
+        const sortExercise = [...exercise]
+        if(sort === 'Duration'){
+            sortExercise.sort((a,b)=>b.duration-a.duration)
+        }
+        else{
+            if(sort === "Calories"){
+                sortExercise.sort((a,b)=>b.caloriesBurned-a.caloriesBurned)
+            }
+            else{
+                if(sort === "Rating"){
+                    sortExercise.sort((a,b)=>b.rating-a.rating)
+                }
+            }
+        }
+        return sortExercise
+    }
 
-
+    const sortTodaysPlan = handleSort(todaysPlan)
+    const sortSaveLater = handleSort(saveLater)
+    
 
     return (
         <div className="container mx-auto my-5 px-3">
             <div className="flex justify-end mb-4">
                 <select
+                    value={sort}
+                    onChange={(e)=>setSort(e.target.value as 'Duration' | 'Calories' |'Rating')}
                     defaultValue="Server location"
                     className="select w-full max-w-xs rounded-xl border-neutral-700 bg-[#1a1c24] text-white shadow-sm"
                 >
-                    <option disabled={true}>Server location</option>
-                    <option>North America</option>
-                    <option>EU west</option>
-                    <option>South East Asia</option>
+                    <option disabled={true}>Sort By</option>
+                    <option value={'Duration'}>Duration</option>
+                    <option value={'Calories'}>Calories</option>
+                    <option value={'Rating'}>Rating</option>
                 </select>
             </div>
 
@@ -62,7 +84,7 @@ const MyPlanPage = () => {
                 />
                 <div className="space-y-2 tab-content w-full text-white p-10">
                     {
-                        todaysPlan.length === 0 ? (<div className="flex flex-col items-center justify-center gap-4">
+                        sortTodaysPlan.length === 0 ? (<div className="flex flex-col items-center justify-center gap-4">
                             <h1 className="text-3xl font-bold">NOTHING HERE YET</h1>
                             <p className="text-slate-500">Browse the library and add a lift to get today moving.</p>
                             <Link href='/exercise'>
@@ -70,7 +92,7 @@ const MyPlanPage = () => {
                                     BROWSE WORKOUTS
                                 </button>
                             </Link>
-                        </div>) : todaysPlan.map(today => <TodaysPlanTab key={today.id} today={today}></TodaysPlanTab>)
+                        </div>) : sortTodaysPlan.map(today => <TodaysPlanTab key={today.id} today={today}></TodaysPlanTab>)
                     }
                 </div>
 
@@ -83,7 +105,7 @@ const MyPlanPage = () => {
                 />
                 <div className="space-y-2 tab-content border-base-3 text-white  p-10">
                     {
-                        saveLater.length === 0 ? (<div className="flex flex-col items-center justify-center gap-4">
+                        sortSaveLater.length === 0 ? (<div className="flex flex-col items-center justify-center gap-4">
                             <h1 className="text-3xl font-bold">NOTHING HERE YET</h1>
                             <p className="text-slate-500">Browse the library and add a lift to get today moving.</p>
                             <Link href='/exercise'>
@@ -91,7 +113,7 @@ const MyPlanPage = () => {
                                     BROWSE WORKOUTS
                                 </button>
                             </Link>
-                        </div>) : saveLater.map(later => <SaveForLater key={later.id} later={later}></SaveForLater>)
+                        </div>) : sortSaveLater.map(later => <SaveForLater key={later.id} later={later}></SaveForLater>)
                     }
                 </div>
             </div>

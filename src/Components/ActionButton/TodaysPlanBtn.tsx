@@ -7,7 +7,6 @@ import { Dispatch, SetStateAction, useContext } from 'react';
 const TodaysPlanBtn = ({data}:{data:Ifit}) => {
     const state = useContext(exerciseContext)
     const {todaysPlan,setTodaysPlan} = state as  {todaysPlan:Ifit[]; setTodaysPlan:Dispatch<SetStateAction<Ifit[]>>}
-    console.log(todaysPlan);
     const handleTodayPlan = ()=>{
         if(todaysPlan.includes(data)){
             alert("already added")

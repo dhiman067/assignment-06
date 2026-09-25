@@ -2,14 +2,28 @@ import { Ifit } from '@/type';
 
 import Image from 'next/image';
 import { Clock, Flame, Star, Check, X } from 'lucide-react';
-import { Dispatch, SetStateAction, useContext } from 'react';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { exerciseContext } from '@/ContextApi/Context';
+import Link from 'next/link';
 
 const SaveForLater = ({ later }: { later: Ifit }) => {
   const { saveLater, setSaveLater } = useContext(exerciseContext) as { saveLater: Ifit[]; setSaveLater: Dispatch<SetStateAction<Ifit[]>> }
   const handleRemoveSaveForLater = () => {
     if (saveLater.includes(later)) {
       setSaveLater(saveLater.filter((s: Ifit) => s.id !== later.id))
+      alert(`Removed ${later.name} from the plan`)
+    }
+  }
+
+  const[markAsDone, setMarkAsDone] = useState<boolean>(false)
+  const handleMarkAsDone =()=>{
+    if(markAsDone){
+      alert("Already marked as done")
+    }
+    else{
+      
+      setMarkAsDone(true)
+      alert(`${later.name} marked as done`)
     }
   }
   return (
@@ -58,20 +72,23 @@ const SaveForLater = ({ later }: { later: Ifit }) => {
       {/* Right Area: Action Controls */}
       <div className="flex items-center gap-3 w-full md:w-auto justify-end pt-2 md:pt-0 border-t md:border-t-0 border-neutral-800/60">
         {/* View Details Button */}
+       <Link href={`/exercise/${later.id}`}>
         <button
-          //   onClick={today.onViewDetails}
           className="px-4 py-2 bg-[#12141c] hover:bg-neutral-800 text-neutral-200 font-semibold text-xs rounded-full border border-neutral-800 transition-colors cursor-pointer"
         >
           View Details
         </button>
+        </Link>
 
         {/* Mark as Done Button */}
         <button
-          //   onClick={onMarkDone}
+            onClick={handleMarkAsDone}
           className="flex items-center gap-1.5 px-4 py-2 bg-[#ccff00] hover:bg-[#b8e600] text-black font-extrabold text-xs rounded-full transition-colors cursor-pointer"
         >
-          <Check className="w-4 h-4 stroke-[3]" />
-          <span>Mark as Done</span>
+           {markAsDone? (<div className='flex'>
+            <Check className="w-4 h-4 stroke-[3]" />
+          <span>Marked as Done</span>
+          </div>) : <span>Mark as Done</span>}
         </button>
 
         {/* Remove/Close Icon Button */}

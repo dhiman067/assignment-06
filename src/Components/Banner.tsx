@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import bannerImg from "@/assets/banner.png";
+import Link from 'next/link';
 const Banner = () => {
     return (
         <div className="w-full max-w-7xl mx-auto py-8 px-4">
@@ -24,9 +25,11 @@ const Banner = () => {
           </p>
 
           {/* Call to Action Button */}
+          <Link href='/exercise'>
           <button className="bg-[#ccff00] hover:bg-[#b8e600] text-black font-extrabold text-xs sm:text-sm uppercase tracking-wide px-6 py-3.5 rounded-lg transition-colors cursor-pointer">
             BROWSE WORKOUTS
           </button>
+          </Link>
         </div>
 
         {/* Right Column: Image Placeholder */}

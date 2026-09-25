@@ -41,12 +41,17 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
+    <Link href='/myPlans'>
     <p className="text-slate-300 text-xs font-bold">Plan <span className="bg-[#C2F800] rounded-4xl px-2 py-1 text-black">
       {todaysPlan.length}
       </span></p>
+    </Link>
+
+    <Link href='/myPlans'>
     <p className="pl-3 text-slate-300 text-xs font-bold ">Saved <span className="">
       {saveLater.length}
       </span></p>
+    </Link>
   </div>
 </div>
 <hr />

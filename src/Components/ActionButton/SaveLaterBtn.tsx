@@ -3,18 +3,40 @@ import { exerciseContext } from '@/ContextApi/Context';
 import { Ifit } from '@/type';
 import { Bookmark } from 'lucide-react';
 import { Dispatch, SetStateAction, useContext } from 'react';
+import { toast, Zoom } from 'react-toastify';
 
 
 const SaveLaterBtn = ({ data }: { data: Ifit }) => {
     const { saveLater, setSaveLater } = useContext(exerciseContext) as { saveLater: Ifit[]; setSaveLater: Dispatch<SetStateAction<Ifit[]>> }
     const handleSaveLater = () => {
-        if (saveLater.includes(data)) {
-            alert("already added")
+        if (saveLater.some(s => s.id === data.id)) {
+            toast.info(`${data.name} already added`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Zoom,
+            });
             return
         }
         else {
             setSaveLater([...saveLater, data])
-            alert(`${data.name} added`)
+            toast.success(`${data.name} added`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Zoom,
+            });
+            
         }
     }
     return (

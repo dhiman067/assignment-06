@@ -5,25 +5,58 @@ import { Clock, Flame, Star, Check, X } from 'lucide-react';
 import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { exerciseContext } from '@/ContextApi/Context';
 import Link from 'next/link';
+import { toast, Zoom } from 'react-toastify';
 
 const SaveForLater = ({ later }: { later: Ifit }) => {
   const { saveLater, setSaveLater } = useContext(exerciseContext) as { saveLater: Ifit[]; setSaveLater: Dispatch<SetStateAction<Ifit[]>> }
   const handleRemoveSaveForLater = () => {
     if (saveLater.includes(later)) {
       setSaveLater(saveLater.filter((s: Ifit) => s.id !== later.id))
-      alert(`Removed ${later.name} from the plan`)
+      toast.warning(`Removed ${later.name} from the plan`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Zoom,
+            });
     }
   }
 
   const[markAsDone, setMarkAsDone] = useState<boolean>(false)
   const handleMarkAsDone =()=>{
     if(markAsDone){
-      alert("Already marked as done")
+      toast.info("Already marked as done", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Zoom,
+            });
+  
     }
     else{
       
       setMarkAsDone(true)
-      alert(`${later.name} marked as done`)
+      toast.success(`${later.name} marked as done`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Zoom,
+            });
+      
     }
   }
   return (

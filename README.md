@@ -21,4 +21,5 @@ FitLog is a workout library and planning app for browsing exercises, viewing exe
 - Save exercises for later
 - Switch between today's plan and saved exercises
 - Calculate the exercises, total duration, total calorie's burn of today's planned workout
+- Sort exercises by duration, rating and calories
 - Responsive layout for desktop and mobile screens

@@ -16,6 +16,8 @@ const MyPlanPage = () => {
         activeTab: string
         setActiveTab: Dispatch<SetStateAction<string>>
     }
+
+    // for sorting
     const [sort, setSort] = useState<'Duration'|'Calories'|'Rating'>('Duration')
     const handleSort =(exercise:Ifit[])=>{
         const sortExercise = [...exercise]
@@ -40,6 +42,7 @@ const MyPlanPage = () => {
     
 
     return (
+        // sort section
         <div className="container mx-auto my-5 px-3">
             <div className="flex justify-end mb-4">
                 <select
@@ -48,14 +51,14 @@ const MyPlanPage = () => {
                     defaultValue="Server location"
                     className="select w-full max-w-xs rounded-xl border-neutral-700 bg-[#1a1c24] text-white shadow-sm"
                 >
-                    <option disabled={true}>Sort By</option>
+                    <option>Sort By</option>
                     <option value={'Duration'}>Duration</option>
                     <option value={'Calories'}>Calories</option>
                     <option value={'Rating'}>Rating</option>
                 </select>
             </div>
-
-            {/* name of each tab group should be unique */}
+            
+            {/* tittle above the tab */}
             <div className="mb-6">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-[0.95]">
                     MY PLAN
@@ -73,6 +76,8 @@ const MyPlanPage = () => {
                     </div>)
                 }
             </div>
+
+                {/* tab section */}
             <div className="tabs tabs-border w-full bg-[#121318] rounded-3xl">
                 <input
                     onClick={() => setActiveTab("tab-1")}
